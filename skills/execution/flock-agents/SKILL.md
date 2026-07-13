@@ -39,20 +39,24 @@ decision belongs in a grilling or prototype session first, not here.
    files or depend on another's output must not run in the same parallel
    batch. Independent tickets run together; dependents run in later phases.
 
-4. **Pick a model per ticket** using the matrix below. Judge each ticket by
-   its acceptance criteria and likely blast radius (captured in step 2) —
-   when in doubt between two tiers, pick the stronger one; a failed overnight
-   run costs more than the token difference.
+4. **Pick a model tier per ticket** using the matrix below. Match capability
+   tiers, not specific model names — this works on whatever runtime you use
+   (Claude Code, OpenAI Codex, etc.); map each tier to the best-fitting model
+   your runtime offers. Judge each ticket by its acceptance criteria and
+   likely blast radius (captured in step 2): use the smartest, most capable
+   model available for the hardest tickets, and drop to faster, cheaper tiers
+   as the work gets more mechanical. When in doubt between two tiers, pick the
+   stronger one; a failed overnight run costs more than the token difference.
 
-   | Ticket profile | Model | Signals |
+   | Ticket profile | Model tier | Signals |
    | --- | --- | --- |
-   | Hardest: UI/UX work, cross-cutting or architectural changes, ambiguous specs, many files touched | `claude-fable-5` | "redesign", "refactor across", visual/layout acceptance criteria, touches shared frameworks or 5+ files |
-   | Normal implementation ticket (the default) | `claude-opus-4-8` | one feature or fix, clear acceptance criteria, a handful of files, established patterns to copy |
-   | Trivial: formatting, renames, config/doc tweaks, mechanical one-file changes | `claude-sonnet-4-6` | no design decisions, diff is predictable from the ticket text alone |
+   | Hardest: UI/UX work, cross-cutting or architectural changes, ambiguous specs, many files touched | Smartest / most capable model available | "redesign", "refactor across", visual/layout acceptance criteria, touches shared frameworks or 5+ files |
+   | Normal implementation ticket (the default) | Balanced mid-tier model | one feature or fix, clear acceptance criteria, a handful of files, established patterns to copy |
+   | Trivial: formatting, renames, config/doc tweaks, mechanical one-file changes | Fast / cheap model | no design decisions, diff is predictable from the ticket text alone |
 
-   Verifier agents check a diff against acceptance criteria — that is a
-   normal-tier task; run them on `claude-opus-4-8` regardless of the
-   implementation model.
+   Verifier agents check a diff against acceptance criteria — catching a
+   subtle miss is worth the strongest judgment, so run them on the smartest /
+   most capable model available regardless of the implementation model.
 
 5. **Launch the flock** as a background dynamic workflow, so it survives
    overnight and resumes if interrupted. For each ticket spawn one agent:
