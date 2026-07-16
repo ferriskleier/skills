@@ -2,7 +2,7 @@
 name: flock-agents
 optimized for: Claude Code, OpenAI Codex
 dependencies: mattpocock/skills
-description: Implement a whole backlog of tickets overnight, unattended. Give it the spec or parent issue whose build tickets you want built (or a local backlog folder); it pulls the linked tickets from the issue tracker, reads the spec and completed tickets for context, orders the open tickets by dependency, then runs one agent per ticket — each using /implement in its own git worktree, on a model matched to the ticket's difficulty, at high reasoning effort — and leaves you your chosen deliverable in the morning: a stack of reviewed branches, one integration branch, or a ready-to-review PR.
+description: Implement a whole backlog of tickets overnight, unattended. Give it the spec or parent issue whose build tickets you want built (or a local backlog folder); it pulls the linked tickets from the issue tracker, reads the spec and completed tickets for context, orders the open tickets by dependency, then runs one agent per ticket — each using /implement in its own git worktree, on a model matched to the ticket's difficulty, at high reasoning effort — and leaves you your chosen deliverable in the morning — a stack of reviewed branches, one integration branch, or a ready-to-review PR.
 ---
 
 # flock-agents - Run through a backlog autonomously
