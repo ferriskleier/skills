@@ -14,7 +14,10 @@ Then pick the skills and agents you want when prompted.
 
 ### Planning
 
-_Nothing here yet._
+- **[write-adr](./skills/planning/write-adr/SKILL.md)** — Precipitate a just-settled decision into an Architecture Decision Record.
+  - Use right after a design discussion, grilling session, or prototype has settled a significant decision — before the "why" gets lost in chat history.
+  - Discovers the repo's existing ADR conventions (or bootstraps them), then runs a `/grill-me` interview (from [mattpocock/skills](https://github.com/mattpocock/skills)) until the decision, its rejected alternatives, and both-signed consequences can be written without guessing.
+  - Writes one Nygard-format ADR per decision and refuses to invent rationale the user doesn't actually hold.
 
 ### Execution
 
