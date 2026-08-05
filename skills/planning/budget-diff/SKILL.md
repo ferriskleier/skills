@@ -28,7 +28,24 @@ to choose — never a decision you make.
   **stop until the user approves it**. Not one line of code before approval.
 - **Budget given** (a number in the invocation like `/budget-diff 200 <task>`,
   or stated anywhere in the prompt) → *Execute mode*: the user already acted
-  as manager; start working inside that number immediately.
+  as manager; start working inside that number as soon as the scope below is
+  settled.
+
+## Budget scope — commit or branch?
+
+A budget bounds a diff, and there are two diffs it could bound. Establish
+which one before any code — **ask the user unless they already said**:
+
+- **Commit scope** — only this task's work. Base: the commit `HEAD` points
+  at when work starts — record its SHA. Committing mid-task never resets the
+  meter; the base stays pinned.
+- **Branch scope** — the whole branch/PR diff. Base: the merge-base with the
+  default branch (`git merge-base <default-branch> HEAD`). Everything the
+  branch already added is budget already spent — measure and report the
+  starting spend before writing a line.
+
+In propose mode, ask together with the proposal. In execute mode, it is the
+one question allowed before work starts.
 
 ## What counts as a line
 
@@ -41,6 +58,16 @@ to choose — never a decision you make.
 
 Added lines in the diff, nothing else. Deleting code elsewhere earns no
 credit — the metric is additions, not net.
+
+The count is never a mental tally — it is read from the diff itself:
+
+```bash
+git diff --numstat "$BASE"   # BASE from the scope above: the pinned SHA or the merge-base
+```
+
+Sum the first column (added lines), skip excluded files, split impl vs test
+by path. Binary files show `-` and don't count. A tally kept in your head
+that disagrees with this command is simply wrong — the diff is the ledger.
 
 ## Propose mode
 
@@ -58,18 +85,23 @@ credit — the metric is additions, not net.
      parser        ~60
      runner        ~70
      tests         ~50
+   Scope: commit only, or the whole branch? (branch has 42 lines already added)
    ```
+
+   Under branch scope, the lines the branch already added come off the top —
+   measure them and show them in the proposal.
 
    Wait for explicit approval. The user may cut it — that's the point.
 
 ## Execute mode
 
-Work in logical steps. After each step, report the running count and one
+Work in logical steps. After each step, **measure** — run `git diff
+--numstat "$BASE"` and sum it — then report the measured count and one
 whiteboard sentence describing the **whole system built so far** (not the
 last step — this is the drift detector):
 
 ```
-Budget: 84 impl + 31 test = 115/200
+Budget: 84 impl + 31 test = 115/200 (measured, branch scope)
 Whiteboard: parser reads the config, hands a flat dict to the runner.
 ```
 
@@ -98,10 +130,15 @@ once it exists, sunk cost argues to keep it.
 | "I'll delete elsewhere to make room" | Deletions are free but earn no credit. Additions are the metric. |
 | "A sample data file counts as the test file" | Redefining a deliverable to dodge its lines is a scope cut. Price real test code; if it doesn't fit, that's the breach protocol. |
 | "Running it by hand counts as testing" | If the user asked for tests, manual verification doesn't discharge it. Assertions or a priced-out scope proposal. |
+| "My running tally says it fits" | The tally isn't the metric — the diff is. Run `git diff --numstat`; when they disagree, the diff wins. |
+| "Earlier commits on the branch shouldn't count" | Under branch scope they are the budget's first spend. The scope belongs to the user; report the starting count, don't renegotiate it. |
+| "Scope is obvious, no need to ask" | Commit vs branch changes the number by every line the branch already added. One question, asked once, before code. |
 
 ## Red flags — stop and re-read this skill
 
 - Code written before a budget exists or is approved
+- Code written before the scope (commit vs branch) is settled
+- A count reported without running `git diff --numstat`
 - A "while I'm here" addition
 - A step finished without its budget report
 - An estimate produced after the code

@@ -14,6 +14,10 @@ Then pick the skills and agents you want when prompted.
 
 ### Planning
 
+- **[budget-diff](./skills/planning/budget-diff/SKILL.md)** — Set a line budget before coding, then live inside it.
+  - Use when a change must stay small ("keep it under 150 lines") or when you want a minimal-diff proposal approved before any code is written.
+  - First settles whether the budget bounds the current commit only or the whole branch/PR diff, then measures spend from `git diff --numstat` against that base — the diff is the ledger, never a self-kept tally.
+  - Proposes a lean per-component budget and stops for approval when none was given; projected overruns go back to the user as simplify-or-raise, never silent breaches.
 - **[write-adr](./skills/planning/write-adr/SKILL.md)** — Precipitate a just-settled decision into an Architecture Decision Record.
   - Use right after a design discussion, grilling session, or prototype has settled a significant decision — before the "why" gets lost in chat history.
   - Discovers the repo's existing ADR conventions (or bootstraps them), then runs a `/grill-me` interview (from [mattpocock/skills](https://github.com/mattpocock/skills)) until the decision, its rejected alternatives, and both-signed consequences can be written without guessing.
