@@ -43,8 +43,14 @@ _Nothing here yet._
 
 ### Productivity
 
-_Nothing here yet._
+- **[let-me-write-it](./skills/productivity/let-me-write-it/SKILL.md)** — Guide the user to write the code themselves; never write it for them.
+  - Use when you want to type every character yourself and have the agent act as a navigator — pointing at files, explaining causes, and giving instructions instead of code.
+  - Every answer follows a fixed shape — location, cause, instruction, check — and never contains code blocks, diffs, or line-for-line pseudo-code; identifiers and keywords are named sparingly in prose.
+  - Responds in ASD-STE100 Simplified Technical English (see [technical-english](./skills/miscellaneous/technical-english/SKILL.md)) and stays active until you explicitly end the mode.
 
 ### Miscellaneous
 
-_Nothing here yet._
+- **[technical-english](./skills/miscellaneous/technical-english/SKILL.md)** — Respond in ASD-STE100 Simplified Technical English.
+  - Use when you want every response in short, clear, standardized English — invoke with /technical-english, or add it to your CLAUDE.md so it applies to every request automatically.
+  - Enforces the STE writing contract: sentences of at most 20–25 words, active voice, imperative instructions, one meaning per word, no idioms, warnings before the step they apply to.
+  - Code, commands, file paths, and error messages stay verbatim — only the prose is simplified.
