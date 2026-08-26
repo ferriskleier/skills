@@ -35,7 +35,11 @@ Then pick the skills and agents you want when prompted.
 
 ### Review
 
-_Nothing here yet._
+- **[guided-review](./skills/review/guided-review/SKILL.md)** — Walk a pull request with the user, one file at a time.
+  - Use when you want to read a PR yourself and have the agent guide you through it — not for an unattended review.
+  - Groups the changes by effect into one table, then shows one file per turn: every hunk as a diff, what it does, and one assessment backed by a look-up (`path:line`, a standards doc, an ADR).
+  - After each file you pick: continue, apply a one-word quick fix folded into the owning commit with `--fixup`, or defer the finding into a review document.
+  - Responds in ASD-STE100 Simplified Technical English (see [technical-english](./skills/miscellaneous/technical-english/SKILL.md)).
 
 ### Refinement
 
