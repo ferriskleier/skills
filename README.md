@@ -43,7 +43,11 @@ Then pick the skills and agents you want when prompted.
 
 ### Refinement
 
-_Nothing here yet._
+- **[ten-principles](./skills/refinement/ten-principles/SKILL.md)** — Ten principles for good software, inspired by Dieter Rams, as a style contract for generated code.
+  - Three modes: add it to your CLAUDE.md so every code change obeys the principles, invoke `/ten-principles` to apply them for the rest of a session, or invoke `/ten-principles review [base]` to review a diff against them.
+  - Judges the style of the code only: names, comments, structure, tests, and size. Architecture stays with the repo's ADRs and architectural principles.
+  - The review reports findings grouped by file, each with a location, a principle number, and a proposed change, then stops until you select which to apply.
+  - Responds in ASD-STE100 Simplified Technical English (see [technical-english](./skills/miscellaneous/technical-english/SKILL.md)).
 
 ### Productivity
 
