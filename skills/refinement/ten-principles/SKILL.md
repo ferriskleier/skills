@@ -36,7 +36,7 @@ continue with the task of the user.
 ## The ten principles
 
 ### 1. Good code is innovative
-It breaks from the default only when the default fails here. The break is deliberate and declares itself at the point it happens. New concepts earn their place by removing manual work or complexity, not by being new. Picasso, not ignorance.
+It breaks from the default only when the default fails. The break is deliberate and declares itself at the point it happens. New concepts earn their place by removing manual work or complexity, not by being new. Picasso, not ignorance.
 
 ### 2. Good code is useful
 Every line serves a real use case, an edge case, or a test. If new code does not serve a story, it's invalid. Speculative abstraction for a future that never arrives is avoided.
@@ -45,19 +45,19 @@ Every line serves a real use case, an edge case, or a test. If new code does not
 Someone reading the code should be pleased by the structure. It poses no effort in finding implementations or definitions. A simpler structure and clear naming reduce ambiguous implications.
 
 ### 4. Good code is self-explanatory
-It is understood from looking at it. Functions and variables are named for their actual usage. Comments are only allowed where the solution is not the obvious one for this team. Then the comment names what is surprising and why.
+It is understood from looking at it. Functions and variables are named for their actual usage. Comments are only allowed where the solution is not the obvious one. Then the comment names what is surprising and why.
 
 ### 5. Good code is unobtrusive
-Names let the reader predict the other file without opening it. Patterns are greppable. No cleverness draws attention to itself. The code sits quietly in the shape of the code around it.
+Names let the reader predict the other file without opening it. Patterns are searchable by name. No cleverness draws attention to itself. The code sits quietly in the shape of the code around it.
 
 ### 6. Good code is honest
-It does not pretend to handle something it doesn't. The naming should make no false promises. Users can rely on looking at the code and expect a behavior without hidden mechanics. The system must make incompleteness or guarantees explicit.
+It does not pretend to handle something it doesn't. Naming should make no false promises. Users can rely on looking at the code and expect a behavior without hidden mechanics. Incompleteness or guarantees are made explicit.
 
 ### 7. Good code is long-lasting
 The code should read just as simple in the future. It must explain durable facts without relying on human or agentic minds and preserve knowledge while allowing code to change. It just feels timeless.
 
 ### 8. Good code is thorough down to the last detail
-When implementation becomes cheap, the decision is the limiting factor, and verification is the floor. The code shows the chosen form and its edge cases. Tests confirm behavior and contract; they do not discover them.
+When implementation becomes cheap, a decision is the limiting factor, and verification is the floor. The code shows the chosen form and its edge cases. Tests confirm behavior and contract; they do not discover them.
 
 ### 9. Good code is efficient
 A reader, human or LLM, needs minimal context to make a change. There is no stale code and no duplicate path. Runtime performance is a different dimension and is not measured here.
