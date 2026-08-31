@@ -38,11 +38,15 @@ Then pick the skills and agents you want when prompted.
 - **[guided-review](./skills/review/guided-review/SKILL.md)** — Walk a pull request with the user, one file at a time.
   - Use when you want to read a PR yourself and have the agent guide you through it — not for an unattended review.
   - Groups the changes by effect into one table, then shows one file per turn: every hunk as a diff, what it does, and one assessment backed by a look-up (`path:line`, a standards doc, an ADR).
-  - After each file you pick: continue, apply a one-word quick fix folded into the owning commit with `--fixup`, or defer the finding into a review document.
+  - After each file you pick: continue, apply a one-word quick fix (left uncommitted in the working tree, committed as one after the review), or defer the finding into a review document.
   - Responds in ASD-STE100 Simplified Technical English (see [technical-english](./skills/miscellaneous/technical-english/SKILL.md)).
 
 ### Refinement
 
+- **[less-but-better](./skills/refinement/less-but-better/SKILL.md)** — Remove as much code as possible without breaking the system.
+  - Invoke `/less-but-better` to add one standing task to the session, on top of the main task; it stays active until the session ends.
+  - During implementation: after each change works, a removal pass runs on the touched code — dead code, hand-rolled stdlib, duplication — applied directly, with a caller grep before each deletion and green tests after.
+  - During a file-by-file review: every file gets a required `Trim:` section proposing removals with `path:line`, replacement, and line delta; reviews propose, they never edit.
 - **[ten-principles](./skills/refinement/ten-principles/SKILL.md)** — Ten principles for good software, inspired by Dieter Rams, as a style contract for generated code.
   - Three modes: add it to your CLAUDE.md so every code change obeys the principles, invoke `/ten-principles` to apply them for the rest of a session, or invoke `/ten-principles review [base]` to review a diff against them.
   - Judges the style of the code only: names, comments, structure, tests, and size. Architecture stays with the repo's ADRs and architectural principles.
