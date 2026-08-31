@@ -90,16 +90,13 @@ a check.
 When the user picks a fix:
 
 1. Make the edit.
-2. Fold it into the commit that owns the file, not into a new commit:
-   ```bash
-   git commit -q --fixup=<owning-sha> -- <file>
-   GIT_SEQUENCE_EDITOR=true git rebase -q -i --autosquash <owning-sha>~1
-   ```
-3. Report the new SHA of the owning commit. The rebase renumbers every
-   later commit, so read `git log --oneline` again before the next fix.
-4. Do not push. The user pushes with `--force-with-lease` after the review.
+2. Leave the edit uncommitted in the working tree. Do not commit it. Do not
+   amend or rebase an existing commit. A rewritten commit gets a new SHA and
+   hides what the review changed.
+3. Report the edited file. `git diff` shows all review fixes in one place.
+4. Do not push. After the review, the user commits all fixes as one commit.
 
-The saved `pr.diff` stays valid; only the SHAs change.
+The saved `pr.diff` stays valid; it shows the PR before the fixes.
 
 ## Deferred findings
 
@@ -116,9 +113,10 @@ line with what was confirmed and what was fixed. Propose the next group.
 At the end of the PR:
 
 1. Findings per group, fixed and deferred.
-2. Commits that changed SHA.
+2. The uncommitted fixes: the output of `git status --short`.
 3. The path of the review document, if one exists.
-4. The push command: `git push --force-with-lease`.
+4. A proposed commit command for all fixes as one commit, for example:
+   `git commit -am "Apply review fixes"`. The user commits and pushes.
 
 ## Rationalizations
 
@@ -128,4 +126,4 @@ At the end of the PR:
 | "I can show two small files at once" | One file per turn. Two files double the working set. |
 | "The change looks right" | Look it up. An assessment without a check is a guess. |
 | "The local diff is fine" | The local base is stale. Use `pr.diff`. |
-| "A new commit for the fix is cleaner" | The fix belongs to the commit that made the mistake. Use `--fixup`. |
+| "I can fold the fix into the owning commit" | A rebase rewrites the SHAs and hides what the review changed. Keep fixes uncommitted. |
