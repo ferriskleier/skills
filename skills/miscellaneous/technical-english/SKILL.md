@@ -1,6 +1,6 @@
 ---
 name: technical-english
-optimized for: Claude Code
+optimized for: Claude Code, Codex, OpenCode
 description: Use when responding to any user message — all prose must be written in ASD-STE100 Simplified Technical English. Also use when the user invokes /technical-english or asks for simpler, clearer, or standardized technical language.
 ---
 
@@ -25,6 +25,7 @@ Every response obeys these rules:
 - Use a maximum of 25 words in a descriptive sentence.
 - Put only one topic in each sentence.
 - Use a maximum of 6 sentences in each paragraph.
+- Remove all mannered prose
 
 **Verbs**
 - Use the active voice. Name the thing that does the action.
