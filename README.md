@@ -45,6 +45,12 @@ Then pick the skills and agents you want when prompted.
   - After each file you pick: continue, apply a one-word quick fix (left uncommitted in the working tree, committed as one after the review), or defer the finding into a review document.
   - Responds in ASD-STE100 Simplified Technical English (see [technical-english](./skills/miscellaneous/technical-english/SKILL.md)).
 
+- **[review-and-improve](./skills/review/review-and-improve/SKILL.md)** — Review the branch, fix the findings, repeat until clean.
+  - Invoke `/review-and-improve` on the implementation branch as its final review and leave; the run is unattended and only you invoke it, the agent never fires it on its own.
+  - Each review first reads the repo's ADRs and written rules, then finds the precedents for what the branch adds — the existing code that already solves the same kind of problem — so findings and fixes follow how the codebase already does things. A concept the codebase has no answer for is welcome, as long as it looks as if it always existed there. Bugs, unhandled cases, and missing tests are reviewed as well.
+  - Prints the findings of each round as SEVERE / MODERATE / LOW, fixes all of them, runs the repo's checks, then reviews the whole branch again until no SEVERE or MODERATE finding is left.
+  - Nothing is committed: all fixes stay in the working tree, and the final report lists every finding per round, the change that fixed it, and what remains (LOW findings of the last review, items that need your decision).
+
 ### Refinement
 
 - **[less-but-better](./skills/refinement/less-but-better/SKILL.md)** — Remove as much code as possible without breaking the system.
