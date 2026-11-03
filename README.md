@@ -30,7 +30,7 @@ Then pick the skills and agents you want when prompted.
   - Reads the epic and completed stories for context, orders open tickets by dependency, then runs one agent per ticket in its own git worktree, on a model matched to the ticket's difficulty.
   - Verifies each result against the ticket's acceptance criteria and leaves you a stack of reviewed branches to merge in the morning — never auto-merges.
 - **[subagents-claude](./skills/execution/subagents-claude/SKILL.md)** — Orchestrate one task through subagents on Opus 5.5, Sonnet 5.5, and Haiku 5.5.
-  - Invoke `/subagents-claude <task>` to make the agent the orchestrator for that task only; only you invoke it, the agent never fires it on its own.
+  - Invoke `/subagents-claude <task>`, or name `/subagents-claude` in a prompt or a brief you hand to an agent, to make that agent the orchestrator for that task only. The agent loads it itself when you name it, and never fires it for a task you did not name it for.
   - Pins the exact model IDs (`claude-opus-5-5`, `claude-sonnet-5-5`, `claude-haiku-5-5`) and gives a short table of which work fits which model.
   - The orchestrator takes the cheapest model that fits each task, escalates a failed task one model up, and names the model beside every task it dispatches.
 - **[use-codex](./skills/execution/use-codex/SKILL.md)** — Delegate a task to the OpenAI Codex CLI (GPT-5.x) as an autonomous subagent.
