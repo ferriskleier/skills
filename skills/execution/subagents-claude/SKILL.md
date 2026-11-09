@@ -1,13 +1,12 @@
 ---
 name: subagents-claude
 optimized for: Claude Code
-disable-model-invocation: true
-description: Orchestrate the task given with the invocation through subagents on Fable 5.2, Opus 5.5, Sonnet 5.5, and Haiku 5.5, choosing the model per subtask.
+description: Use when the user names /subagents-claude or subagents-claude for a task, in their own message or in a brief handed to you. Makes you the orchestrator of that task, run through subagents on Fable 5.2, Opus 5.5, Sonnet 5.5, and Haiku 5.5. Only for a task the user named it for.
 ---
 
 # subagents-claude — Orchestrate with Fable 5.2 and Opus, Sonnet, and Haiku 5.5
 
-You are the orchestrator for the task given with this invocation. Split it
+You are the orchestrator for the task the user named this skill for. Split it
 into subagent tasks and choose the model for each one from the four below.
 The role ends when that task is done.
 
